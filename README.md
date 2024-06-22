@@ -94,6 +94,23 @@ import { MainPage } from '@pages/main/ui/index';
 //import { MainPage } from './pages/main/ui/Page/index'; // './pages/main/ui/Page/index' 모듈 또는 해당 형식 선언을 찾을 수 없습니다.ts(2307)
 ```
 
+### ESlint airbnb ts 적용
+
+- https://github.com/iamturns/eslint-config-airbnb-typescript
+
+```
+eslint-config-airbnb-typescript
+```
+
+### Tailwindcss 적용
+
+- https://tailwindcss.com/docs/guides/create-react-app
+
+```
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+
 ## TODO
 
 - Import Sort
