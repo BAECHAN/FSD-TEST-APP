@@ -13,7 +13,10 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 w-96 p-4 bg-gray-100 rounded-md shadow-md"
+    >
       <EmailInput
         email={email}
         onEmailChange={value => setEmail(value)}
