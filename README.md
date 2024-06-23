@@ -54,15 +54,7 @@ npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev
 npm install react-router-dom
 ```
 
-### FSD 용 ESLint 적용 및 Import 적용
-
-#### FSD ESLint 설치
-
-- https://github.com/feature-sliced/eslint-config#readme
-
-```
-npm install -D @feature-sliced/eslint-config eslint-plugin-import eslint-plugin-boundaries
-```
+### FSD 용 Import 적용
 
 #### tsconfig파일에서 paths 수정
 
@@ -90,16 +82,8 @@ npm install -D @feature-sliced/eslint-config eslint-plugin-import eslint-plugin-
 #### 적용 코드
 
 ```tsx
-import { MainPage } from '@pages/main/ui/index';
+import { MainPage } from '@pages/main';
 //import { MainPage } from './pages/main/ui/Page/index'; // './pages/main/ui/Page/index' 모듈 또는 해당 형식 선언을 찾을 수 없습니다.ts(2307)
-```
-
-### ESlint airbnb ts 적용
-
-- https://github.com/iamturns/eslint-config-airbnb-typescript
-
-```
-eslint-config-airbnb-typescript
 ```
 
 ### Tailwindcss 적용
@@ -109,6 +93,12 @@ eslint-config-airbnb-typescript
 ```
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
+```
+
+### Import Sorting 처리
+
+```
+npm install --save-dev prettier prettier-plugin-organize-imports
 ```
 
 ## TODO

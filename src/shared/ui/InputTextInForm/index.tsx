@@ -1,49 +1,48 @@
 import { forwardRef } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { InputTextCommonProps } from 'shared/type';
 
-type InputTextProps = {
+type InputTextInFormProps = {
   id: string;
-  onChange: (value: string) => void;
-  value: string;
+  isDirty: boolean;
+  register?: UseFormRegisterReturn;
 } & InputTextCommonProps;
 
-const InputText = forwardRef<HTMLInputElement, InputTextProps>(
+const InputTextInForm = forwardRef<HTMLInputElement, InputTextInFormProps>(
   (
     {
       id,
-      value,
-      onChange,
+      register,
       label = '',
       placeholder = '',
       type = 'text',
       isError = false,
+      isDirty = false,
     },
     ref,
   ) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
-    };
-
     return (
-      <label htmlFor={id}>
+      <label
+        htmlFor={id}
+        className="block"
+      >
         {label}
         <input
           type={type}
           id={id}
-          value={value}
-          onChange={handleChange}
           placeholder={placeholder}
           className={`mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
             isError ? 'border-red-500 focus:border-red-500' : 'border-gray-300'
           }`}
           ref={ref}
-          aria-invalid={!isError ? 'true' : 'false'}
+          aria-invalid={isDirty ? (!isError ? 'true' : 'false') : undefined}
+          {...register}
         />
       </label>
     );
   },
 );
 
-InputText.displayName = 'InputText';
+InputTextInForm.displayName = 'InputTextInForm';
 
-export default InputText;
+export default InputTextInForm;

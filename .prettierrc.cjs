@@ -1,5 +1,10 @@
 // Prettier 설정 파일
 module.exports = {
+  plugins: [require.resolve('prettier-plugin-organize-imports')],
+  importOrder: ['^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+
   // printWidth: 줄 길이를 설정합니다. 기본값은 80입니다.
   printWidth: 80,
 

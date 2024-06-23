@@ -1,18 +1,29 @@
-import { InputText } from '@shared/ui';
+import { forwardRef } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { InputTextInForm } from 'shared/ui';
 
 type PasswordInputProps = {
-  password: string;
-  onPasswordChange: (value: string) => void;
-};
+  isError: boolean;
+  isDirty: boolean;
+} & UseFormRegisterReturn;
 
-export const PasswordInput = (props: PasswordInputProps) => {
-  const { password, onPasswordChange } = props;
+const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
+  ({ isError, isDirty, ...rest }: PasswordInputProps, ref) => {
+    return (
+      <InputTextInForm
+        id="password"
+        label="Password"
+        type="password"
+        placeholder="Enter your password"
+        isError={isError}
+        isDirty={isDirty}
+        ref={ref}
+        register={rest}
+      />
+    );
+  },
+);
 
-  return (
-    <InputText
-      id="password"
-      onChange={onPasswordChange}
-      value={password}
-    />
-  );
-};
+PasswordInput.displayName = 'PasswordInput';
+
+export default PasswordInput;

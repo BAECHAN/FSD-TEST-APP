@@ -24,19 +24,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       /* FSD Imports */
-      "@/*": ["src/*"],
-      "@app/*": ["src/app/*"],
-      "@entities/*": ["src/entities/*"],
-      "@features/*": ["src/features/*"],
-      "@shared/*": ["src/shared/*"],
-      "@pages/*": ["src/pages/*"]
     }
   },
   "include": [
-    "src/**/*",
+    "src",
     "other-directories-or-files/**/*",
     "vite.config.ts",
     "postcss.config.cjs"

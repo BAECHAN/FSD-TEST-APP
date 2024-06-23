@@ -1,1 +1,2 @@
-export { InputText } from './InputText/index';
+export { default as InputText } from './InputText';
+export { default as InputTextInForm } from './InputTextInForm';

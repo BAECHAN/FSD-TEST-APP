@@ -29,6 +29,8 @@
       }
     ],
 
+    "@typescript-eslint/no-explicit-any": "off",
+
     "react/jsx-boolean-value": ["error", "never"], // Props에 boolean 타입인 경우 true일때 값을 생략함
 
     "react/react-in-jsx-scope": "off",

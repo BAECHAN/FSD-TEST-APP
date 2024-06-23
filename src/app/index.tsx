@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './index.css';
 
-import { MainPage } from '@pages/main';
-import { LoginPage } from '@pages/login';
+import { MainPage } from 'pages/main';
+import { LoginPage } from 'pages/login';
 import * as React from 'react';
 
 const App: React.FC = () => {
