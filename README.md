@@ -56,34 +56,12 @@ npm install react-router-dom
 
 ### FSD 용 Import 적용
 
-#### tsconfig파일에서 paths 수정
-
-```json
-// tsconfig.app.json
-{
-  "compilerOptions": {
-    ...,
-
-    "baseUrl": ".",
-    "paths": {
-      /* FSD Imports */
-      "@/*": ["src/*"],
-      "@app/*": ["src/app/*"],
-      "@entities/*": ["src/entities/*"],
-      "@features/*": ["src/features/*"],
-      "@shared/*": ["src/shared/*"],
-      "@pages/*": ["src/pages/*"]
-    }
-  },
-  "include": ["src"]
-}
-```
-
 #### 적용 코드
 
 ```tsx
-import { MainPage } from '@pages/main';
-//import { MainPage } from './pages/main/ui/Page/index'; // './pages/main/ui/Page/index' 모듈 또는 해당 형식 선언을 찾을 수 없습니다.ts(2307)
+import { MainPage } from 'pages/main';
+//import { MainPage } from './pages/main/ui/Page/index';
+// './pages/main/ui/Page/index' 모듈 또는 해당 형식 선언을 찾을 수 없습니다.ts(2307)
 ```
 
 ### Tailwindcss 적용
@@ -103,5 +81,4 @@ npm install --save-dev prettier prettier-plugin-organize-imports
 
 ## TODO
 
-- Import Sort
 - husky
