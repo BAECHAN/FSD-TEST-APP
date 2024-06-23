@@ -13,7 +13,7 @@ cd my-fsd-project
 npm install
 ```
 
-### 디렉토리 구조를 FSD로 세팅
+### 디렉토리 구조를 FSD로 세팅 ( 작업하면서 수정 중 - 아래는 임시 구조 )
 
 ```
 src/
