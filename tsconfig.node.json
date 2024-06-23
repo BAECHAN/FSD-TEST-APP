@@ -5,7 +5,7 @@
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true, // 권장: CommonJS 및 ES 모듈 간 호환성을 개선
     "strict": true,
     "noEmit": true
   },

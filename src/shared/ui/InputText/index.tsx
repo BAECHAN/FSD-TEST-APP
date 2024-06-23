@@ -1,5 +1,3 @@
-import React from 'react';
-
 type InputTextProps = {
   id: string;
   onChange: (value: string) => void;

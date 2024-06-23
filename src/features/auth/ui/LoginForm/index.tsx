@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { EmailInput } from '@entities/login/ui/EmailInput';
-import { PasswordInput } from '@entities/login/ui/PasswordInput';
+import { EmailInput, PasswordInput } from '@entities/login/ui';
+import { useState } from 'react';
 
 export const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -22,10 +21,10 @@ export const LoginForm: React.FC = () => {
         onEmailChange={value => setEmail(value)}
       />
       <PasswordInput
-        password={password}
+        password={'asdf'}
         onPasswordChange={value => setPassword(value)}
       />
-      <button type="submit">Login</button>
+      <button type="button">Login</button>
     </form>
   );
 };

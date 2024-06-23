@@ -1,5 +1,4 @@
-import { InputText } from '@/shared';
-import React, { useState } from 'react';
+import { InputText } from '@shared/ui';
 
 type PasswordInputProps = {
   password: string;

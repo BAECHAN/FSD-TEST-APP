@@ -1,5 +1,4 @@
-import { InputText } from '@/shared';
-import React from 'react';
+import { InputText } from '@shared/ui';
 
 type EmailInputProps = {
   email: string;

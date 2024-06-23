@@ -11,8 +11,7 @@
     "allowJs": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
@@ -36,5 +35,11 @@
       "@pages/*": ["src/pages/*"]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*",
+    "other-directories-or-files/**/*",
+    "vite.config.ts",
+    "postcss.config.cjs"
+  ],
+  "exclude": ["node_modules", "build", "dist"]
 }
