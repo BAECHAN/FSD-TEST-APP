@@ -213,3 +213,8 @@ module.exports = {
   },
 };
 ```
+
+### FSD폴더 구조 변경
+
+index.ts파일로만 import해올 수 있으며,
+다른 컴포넌트 파일들은 LoginForm/index.tsx -> LoginForm.tsx 파일로 명명하여 검색에 용이하게 수정하고, 폴더 구조를 단순화 시킴
