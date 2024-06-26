@@ -214,7 +214,23 @@ module.exports = {
 };
 ```
 
+
 ### FSD폴더 구조 변경
 
 index.ts파일로만 import해올 수 있으며,
 다른 컴포넌트 파일들은 LoginForm/index.tsx -> LoginForm.tsx 파일로 명명하여 검색에 용이하게 수정하고, 폴더 구조를 단순화 시킴
+
+
+### 선택사항
+
+#### settings.json파일 추가
+git에는 안올라가기 때문에 필요하시면 따로 드리겠습니다.
+
+제 경우 아래와 같이 적용 
+- 인텔리센스에서 추천항목 일부 제외
+- import 상대경로 안쓰기
+- 
+
+#### Extension
+- Tailwind CSS IntelliSense ( tailwind class 인텔리센스 추천 )
+
