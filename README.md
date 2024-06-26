@@ -115,3 +115,101 @@ lint-staged: 스테이징된 파일에 대해 린팅 및 기타 작업을 수행
 ```
 npx mrm lint-staged
 ```
+
+### Shadcn-ui
+
+Shadcn은 UI 라이브러리로, Tailwind CSS와 React를 사용하여 스타일링 및 컴포넌트 개발을 쉽게 할 수 있도록 도와줍니다. Tailwind CSS의 유틸리티 클래스와 함께 사용하는 컴포넌트 모음을 제공하여, 사용자 인터페이스를 빠르고 일관성 있게 구축할 수 있도록 지원합니다.
+
+#### 공식문서
+
+- https://ui.shadcn.com/docs/installation/vite
+
+1. Shadcn-ui를 적용해주는데 기존 tailwindcss가 적용이 안되서 확인해보니 components.json ( shadcn config 파일 )에서 prefix로 특정 접두사를 쓰다보니 tailwind가 적용이 되지 않았었습니다.
+
+before - "prefix": 'false'
+
+after - "prefix": ""
+
+before일때 falseflex, falsebg-gray-100 이런식으로 말그대로 prefix로 false가 붙어야만 Tailwind가 적용되도록 변경되어있어서 after와 같이 적용 후 기존 shadcn에서 falseflex와 같이 되어있던부분들을 제거
+
+2. shadcn-ui에서 컴포넌트를 추가하는 경우 기존 lint 설정한 옵션들과 맞지 않아 수정
+
+- className is missing in props validation react/prop-types lint
+
+해결방법 : eslintrc파일에 rule 수정
+
+```js
+// .eslintrc.cjs
+module.exports = {
+  // 기존 설정...
+  rules: {
+    // 기존 규칙...
+    'react/prop-types': 'off',
+  },
+};
+```
+
+3. import 해올 때 절대경로를 못읽어와서 환경파일을 몇몇개 수정하였음
+
+- tsconfig.app.json 에서 path와
+
+### import 설정
+
+- 절대경로 '@/entities/~' 이런식으로만 import해올 수 있도록 lint 설정
+- import해올 떄 index.tsx파일로만 import 해올 수 있도록 ( 원본파일에 직접 import 해올 수 없게 막음 ) lint 설정
+- import해올 때 확장자 생략 가능
+
+#### 사용한 라이브러리
+
+```bash
+  "eslint-import-resolver-alias": "^1.1.2",
+  "eslint-plugin-import": "^2.29.1",
+```
+
+```js
+// .eslintrc.cjs
+module.exports = {
+  // 기존 설정...
+  rules: {
+    // 기존 규칙...
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ], // 라이브러리 패키지는 제외하고 import문에 확장자 없을 시 에러. 에러시 수동수정 필요 (TypeScript에서는 확장자 붙이는 것을 권장)
+
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [],
+        patterns: [
+          {
+            group: [
+              '@/shared/lib/shadcn-ui/components/ui/*',
+              '!@/shared/lib/shadcn-ui/components/ui/index',
+
+              '@/entities/**/*.{ts,tsx}',
+              '!@/entities/**/index.{ts,tsx}',
+
+              '@/features/**/*.{ts,tsx}',
+              '!@/features/**/index.{ts,tsx}',
+
+              '@/widgets/**/*.{ts,tsx}',
+              '!@/widgets/**/index.{ts,tsx}',
+
+              '@/pages/**/*.{ts,tsx}',
+              '!@/pages/**/index.{ts,tsx}',
+            ],
+            message: 'Please import from the index.ts file in the ui folder.',
+          },
+        ],
+      },
+    ], // import 해올 수 있는 파일을 index.tsx ( Barrel ) 파일로 한정시켜 export 관리에 용이하게 처리함
+  },
+};
+```

@@ -35,7 +35,7 @@
     "src/**/*.tsx",
     "other-directories-or-files/**/*",
     "vite.config.ts",
-    "postcss.config.cjs",
+    "postcss.config.js",
     ".eslintrc.cjs"
   ],
   "exclude": ["node_modules", "build", "dist"]

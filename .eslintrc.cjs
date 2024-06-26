@@ -42,18 +42,6 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }], // jsx 파일 확장자를 .ts, .tsx로 한정. 위반 시 경고(warn)
     '@typescript-eslint/camelcase': 'off',
 
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ], // 라이브러리 패키지는 제외하고 import문에 확장자 없을 시 에러. 에러시 수동수정 필요 (TypeScript에서는 확장자 붙이는 것을 권장)
-
-    'import/prefer-default-export': 'off',
     'react/function-component-definition': [
       'error',
       {
@@ -67,6 +55,19 @@ module.exports = {
       { allowConstantExport: true },
     ],
 
+    'import/prefer-default-export': 'off',
+
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ], // 라이브러리 패키지는 제외하고 import문에 확장자 없을 시 에러. 에러시 수동수정 필요 (TypeScript에서는 확장자 붙이는 것을 권장)
+
     'no-restricted-imports': [
       'error',
       {
@@ -76,6 +77,18 @@ module.exports = {
             group: [
               '@/shared/lib/shadcn-ui/components/ui/*',
               '!@/shared/lib/shadcn-ui/components/ui/index',
+
+              '@/entities/**/*.{ts,tsx}',
+              '!@/entities/**/index.{ts,tsx}',
+
+              '@/features/**/*.{ts,tsx}',
+              '!@/features/**/index.{ts,tsx}',
+
+              '@/widgets/**/*.{ts,tsx}',
+              '!@/widgets/**/index.{ts,tsx}',
+
+              '@/pages/**/*.{ts,tsx}',
+              '!@/pages/**/index.{ts,tsx}',
             ],
             message: 'Please import from the index.ts file in the ui folder.',
           },
@@ -135,6 +148,6 @@ module.exports = {
       rules: {
         'react/function-component-definition': 'off',
       },
-    },
+    }, // shadcn-ui에서는 함수 컴포넌트 정의 규칙을 무시
   ],
 };
