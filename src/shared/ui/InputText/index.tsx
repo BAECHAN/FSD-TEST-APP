@@ -1,5 +1,5 @@
+import { InputTextCommonProps } from '@/shared/type';
 import { forwardRef } from 'react';
-import { InputTextCommonProps } from 'shared/type';
 
 type InputTextProps = {
   id: string;

@@ -1,11 +1,10 @@
+import { LoginPage } from '@/pages/login';
+import { MainPage } from '@/pages/main';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import './index.css';
-
-import { MainPage } from 'pages/main';
-import { LoginPage } from 'pages/login';
-import * as React from 'react';
+import '@/app/index.css';
 
 const App: React.FC = () => {
   return (

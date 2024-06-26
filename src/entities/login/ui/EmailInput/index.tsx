@@ -1,6 +1,6 @@
+import { InputTextInForm } from '@/shared/ui';
 import { forwardRef } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { InputTextInForm } from 'shared/ui';
 
 type EmailInputProps = {
   isError: boolean;

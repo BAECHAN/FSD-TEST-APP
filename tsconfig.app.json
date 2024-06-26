@@ -24,16 +24,19 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      /* FSD Imports */
+      "@/*": ["src/*"]
     }
   },
   "include": [
     "src",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "other-directories-or-files/**/*",
     "vite.config.ts",
-    "postcss.config.cjs"
+    "postcss.config.cjs",
+    ".eslintrc.cjs"
   ],
   "exclude": ["node_modules", "build", "dist"]
 }

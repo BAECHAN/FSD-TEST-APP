@@ -1,5 +1,5 @@
-import { EmailInput, PasswordInput } from 'entities/login';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { EmailInput, PasswordInput } from '@/entities/login';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormValues = {
   email: string;

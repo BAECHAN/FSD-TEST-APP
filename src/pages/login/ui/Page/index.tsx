@@ -1,9 +1,12 @@
-import { LoginFormLayout } from 'widgets/layout';
+import { Accordion, Badge } from '@/shared/lib/shadcn-ui/components/ui';
+import { LoginFormLayout } from '@/widgets/layout';
 
 export const LoginPage = () => {
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1 className="flex justify-center">Login Page</h1>
+      <Badge>Primary</Badge>
+      <Accordion></Accordion>
       <LoginFormLayout />
     </div>
   );
