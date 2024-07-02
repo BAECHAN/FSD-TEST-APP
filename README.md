@@ -214,23 +214,97 @@ module.exports = {
 };
 ```
 
-
 ### FSD폴더 구조 변경
 
 index.ts파일로만 import해올 수 있으며,
 다른 컴포넌트 파일들은 LoginForm/index.tsx -> LoginForm.tsx 파일로 명명하여 검색에 용이하게 수정하고, 폴더 구조를 단순화 시킴
 
-
 ### 선택사항
 
 #### settings.json파일 추가
+
 git에는 안올라가기 때문에 필요하시면 따로 드리겠습니다.
 
-제 경우 아래와 같이 적용 
+제 경우 아래와 같이 적용
+
 - 인텔리센스에서 추천항목 일부 제외
 - import 상대경로 안쓰기
-- 
+-
 
 #### Extension
+
 - Tailwind CSS IntelliSense ( tailwind class 인텔리센스 추천 )
 
+### import 설정2
+
+A라는 경로에서 B 경로를 import 해올 수 없게 하도록 처리하려고함. ( FSD 아키텍처에서는 하위 Layer가 상위 Layer를 import 해오지 못하게 구성해야됨 )
+
+```js
+// .eslintrc.cjs
+module.exports = {
+  // 기존 설정...
+  rules: {
+    ..., // 기존 규칙
+
+    'import/no-restricted-paths': [
+      'error',
+      {
+        zones: [
+          {
+            target: './src/shared',
+            from: [
+              './src/entities',
+              './src/features',
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/entities',
+            from: [
+              './src/features',
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/features',
+            from: [
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/widgets',
+            from: ['./src/pages', './src/processes', './src/app'],
+          },
+          {
+            target: './src/pages',
+            from: ['./src/processes', './src/app'],
+          },
+          {
+            target: './src/processes',
+            from: ['./src/app'],
+          },
+        ],
+      },
+    ], // target에서 from으로부터 import해올 수 없도록 함
+  },
+};
+```
+
+### TanstackQuery + Recoil 추가
+
+```bash
+npm install @tanstack/react-query recoil
+```
+
+```bash
+npm install --save-dev @types/react-query @types/recoil
+```
