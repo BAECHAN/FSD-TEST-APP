@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import '@/app/index.css';
+import { RecoilRoot } from 'recoil';
 
 const App: React.FC = () => {
   return (
@@ -30,7 +31,9 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <App />
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </React.StrictMode>,
   );
 }

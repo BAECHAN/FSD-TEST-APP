@@ -1,11 +1,25 @@
-import { Accordion, Badge } from '@/shared/lib/shadcn-ui/components/ui';
-import { LoginFormLayout } from '@/widgets/layout';
+import { counterAtom } from '@/shared/lib/recoil/store/atom';
+import { Accordion } from '@/shared/lib/shadcn-ui/components/ui';
+import { CounterTestLayout, LoginFormLayout } from '@/widgets/layout';
+import { useRecoilState } from 'recoil';
 
 export const LoginPage = () => {
+  const [count, setCount] = useRecoilState(counterAtom);
+
+  const addCount = () => {
+    setCount(count + 1);
+  };
+
   return (
     <div>
       <h1 className="flex justify-center">Login Page</h1>
-      <Badge>Primary</Badge>
+      <CounterTestLayout
+        count={count}
+        addCount={addCount}
+        linkTo="/"
+        linkName="Main"
+      />
+
       <Accordion></Accordion>
       <LoginFormLayout />
     </div>
