@@ -308,3 +308,8 @@ npm install @tanstack/react-query recoil
 ```bash
 npm install --save-dev @types/react-query @types/recoil
 ```
+
+### Axios
+
+axios 인스턴스를 생성해서 한번에 관리하자.
+axios.create
