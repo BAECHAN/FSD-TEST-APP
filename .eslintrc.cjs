@@ -95,6 +95,55 @@ module.exports = {
         ],
       },
     ],
+    'import/no-restricted-paths': [
+      'error',
+      {
+        zones: [
+          {
+            target: './src/shared',
+            from: [
+              './src/entities',
+              './src/features',
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/entities',
+            from: [
+              './src/features',
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/features',
+            from: [
+              './src/widgets',
+              './src/pages',
+              './src/processes',
+              './src/app',
+            ],
+          },
+          {
+            target: './src/widgets',
+            from: ['./src/pages', './src/processes', './src/app'],
+          },
+          {
+            target: './src/pages',
+            from: ['./src/processes', './src/app'],
+          },
+          {
+            target: './src/processes',
+            from: ['./src/app'],
+          },
+        ],
+      },
+    ],
 
     'react/prop-types': 'off',
   },
