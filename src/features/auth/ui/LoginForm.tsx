@@ -6,7 +6,7 @@ type FormValues = {
   password: string;
 };
 
-export const LoginForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -84,3 +84,5 @@ export const LoginForm: React.FC = () => {
     </form>
   );
 };
+
+export default LoginForm;
