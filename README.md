@@ -313,3 +313,36 @@ npm install --save-dev @types/react-query @types/recoil
 
 axios 인스턴스를 생성해서 한번에 관리하자.
 axios.create
+
+### TanstackQuery DevTools 라이브러리 추가
+```bash
+npm install react-query react-query-devtools
+```
+
+```tsx
+// app/index.tsx
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
+
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <App />
+    <ReactQueryDevtools />
+  </QueryClientProvider>
+)
+```
+
+env파일로 환경에 따라 ReactQueryDevtools의 initialIsOpen 속성을 바꿔줘야함
+
+### env파일 생성 및 gitIgnore에서 제외
+
+vite-app이라 REACT_APP_으로 환경변수를 접두사를 하지않고 VITE_로 함
