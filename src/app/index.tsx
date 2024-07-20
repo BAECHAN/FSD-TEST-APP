@@ -1,5 +1,5 @@
 import { LoginPage } from '@/pages/login';
-import { MainPage } from '@/pages/main';
+import { MainPage, MyPage } from '@/pages/main';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -20,6 +20,10 @@ const App: React.FC = () => {
         <Route
           path="/login"
           element={<LoginPage />}
+        />
+        <Route
+          path="/mypage"
+          element={<MyPage />}
         />
       </Routes>
     </Router>

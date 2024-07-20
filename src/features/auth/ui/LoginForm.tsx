@@ -1,6 +1,7 @@
 import { EmailInput, PasswordInput } from '@/entities/login';
-import { axiosInstance } from '@/shared/lib';
+import { login } from '@/shared/api';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   email: string;
@@ -16,13 +17,16 @@ const LoginForm: React.FC = () => {
     mode: 'onChange',
   });
 
+  const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<FormValues> = async data => {
     // await new Promise(resolve => setTimeout(resolve, 1000));
     // alert(JSON.stringify(data, null, 2));
 
     try {
-      const response = await axiosInstance.post('/login', { ...data });
-      alert(`Login successful! Token: ${response.data.token}`);
+      const response = await login(data.email, data.password);
+      alert(`Login successful! Token: ${response.data.refreshToken}`);
+      navigate('/mypage');
     } catch (error) {
       alert('Login failed: Invalid credentials');
     }
