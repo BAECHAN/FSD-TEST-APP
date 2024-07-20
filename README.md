@@ -315,6 +315,7 @@ axios 인스턴스를 생성해서 한번에 관리하자.
 axios.create
 
 ### TanstackQuery DevTools 라이브러리 추가
+
 ```bash
 npm install react-query react-query-devtools
 ```
@@ -337,12 +338,86 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <App />
     <ReactQueryDevtools />
-  </QueryClientProvider>
-)
+  </QueryClientProvider>,
+);
 ```
 
 env파일로 환경에 따라 ReactQueryDevtools의 initialIsOpen 속성을 바꿔줘야함
 
 ### env파일 생성 및 gitIgnore에서 제외
 
-vite-app이라 REACT_APP_으로 환경변수를 접두사를 하지않고 VITE_로 함
+vite-app이라 REACT*APP*으로 환경변수를 접두사를 하지않고 VITE\_로 함
+
+### axios로 임의 로컬 서버 API 연결 테스트
+
+1. 아래와 같이 서버 index.js를 아래 코드와 같이 입력 후 서버 실행
+
+```js
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 5174;
+const preUrl = '/api';
+
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // React 개발 서버 도메인
+    credentials: true, // 자격 증명 허용
+  }),
+);
+
+app.use(bodyParser.json());
+
+app.post(`${preUrl}/login`, (req, res) => {
+  const { email, password } = req.body;
+
+  // 간단한 로그인 로직 (실제 프로젝트에서는 데이터베이스와 비교해야 합니다)
+  if (email === 'test@example.com' && password === 'test1234') {
+    return res.json({ success: true, message: 'Login successful!' });
+  } else {
+    return res
+      .status(401)
+      .json({ success: false, message: 'Invalid email or password' });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+```
+
+2. 로컬 서버로 api 통신을 위해 axiosInstance에서 baseUrl과 withCredentials 설정해주고, 서버로 api 요청 시 /api를 붙여서 보냄
+
+```ts
+// src/api/axiosInstance.ts
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: `${import.meta.env.VITE_SERVER_URL}/api`, // 로컬 개발 서버의 기본 URL
+  withCredentials: true, // 쿠키와 함께 요청을 보냄
+});
+
+export default axiosInstance;
+```
+
+3. package.json에서 proxy 설정 ( 필수는 아니고 production 환경에선 안되는 것으로 암)
+
+```json
+{
+ ...,
+ "proxy": "http://localhost:5174"
+}
+```
+
+4. axios로 api 통신 테스트
+
+```ts
+try {
+  const response = await axiosInstance.post('/login', { ...data });
+  alert(`Login successful! Token: ${response.data.token}`);
+} catch (error) {
+  alert('Login failed: Invalid credentials');
+}
+```

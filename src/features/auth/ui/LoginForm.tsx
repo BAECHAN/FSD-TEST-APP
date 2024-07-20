@@ -1,4 +1,5 @@
 import { EmailInput, PasswordInput } from '@/entities/login';
+import { axiosInstance } from '@/shared/lib';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type FormValues = {
@@ -16,8 +17,15 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = async data => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    alert(JSON.stringify(data, null, 2));
+    // await new Promise(resolve => setTimeout(resolve, 1000));
+    // alert(JSON.stringify(data, null, 2));
+
+    try {
+      const response = await axiosInstance.post('/login', { ...data });
+      alert(`Login successful! Token: ${response.data.token}`);
+    } catch (error) {
+      alert('Login failed: Invalid credentials');
+    }
   };
 
   return (
