@@ -429,8 +429,11 @@ refreshToken - indexedDB에 저장하여, accessToken이 없으면 refreshToken�
 
 1. 로그인 성공 시 accessToken과 refreshToken을 발급하여 각각 쿠키와 indexedDB에 저장
 2. API요청할때마다 cookie에 있는 accessToken을 담아서 ( httpOnly: true라 항상 담아서 보냄 ) 요청함
+
    2-1. 만약 accessToken이 없다면, 서버에서 401로 반환해줌.
+
    2-2. 클라이언트에서 서버로부터 401로 받으면, retry하여 indexedDB에서 refreshToken을 꺼내서 accessToken을 API 호출하여 서버로부터 다시 가져옴
+
    2-3. accessToken을 가져오면 다시 retry 하여 API 요청
 
 3. 로그아웃하면 accessToken, refreshToken 모두 소멸
