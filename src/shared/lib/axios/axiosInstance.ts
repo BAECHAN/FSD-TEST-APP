@@ -27,15 +27,17 @@ axiosInstance.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
+
+    // accessToken이 없다면 accessToken을 refreshToken을 통해 재발급 받아서 요청을 다시 보냄
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         const response = await getAccessToken();
-        const newAccessToken = response.data.accessToken;
 
-        axiosInstance.defaults.headers.common['Authorization'] =
-          `Bearer ${newAccessToken}`;
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        const accessToken = response.data.accessToken;
+
+        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);

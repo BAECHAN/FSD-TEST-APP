@@ -1,6 +1,6 @@
 export { default as axiosInstance } from './axios/axiosInstance';
 export {
   deleteRefreshToken,
-  getRefreshToken,
+  getLocalRefreshToken,
   saveRefreshToken,
 } from './idb/indexedDB';

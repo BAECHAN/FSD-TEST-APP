@@ -15,7 +15,7 @@ export const saveRefreshToken = async (token: string) => {
   await db.put(STORE_NAME, token, REFRESH_TOKEN_KEY);
 };
 
-export const getRefreshToken = async (): Promise<string | undefined> => {
+export const getLocalRefreshToken = async (): Promise<string | undefined> => {
   const db = await openDB(DB_NAME, 1);
   return await db.get(STORE_NAME, REFRESH_TOKEN_KEY);
 };
