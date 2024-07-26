@@ -1,5 +1,5 @@
-import { counterAtom } from '@/shared/lib/recoil/store/atom';
 import { Accordion } from '@/shared/lib/shadcn-ui/components/ui';
+import { counterAtom } from '@/shared/store';
 import { CounterTestLayout, LoginFormLayout } from '@/widgets/layout';
 import { useRecoilState } from 'recoil';
 

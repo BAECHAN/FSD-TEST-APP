@@ -1,5 +1,5 @@
-import { counterAtom } from '@/shared/lib/recoil/store/atom';
 import { Alert } from '@/shared/lib/shadcn-ui/components/ui';
+import { counterAtom } from '@/shared/store';
 import { DropdownMenu } from '@/shared/ui';
 import { CounterTestLayout } from '@/widgets/layout';
 import { useRecoilState } from 'recoil';

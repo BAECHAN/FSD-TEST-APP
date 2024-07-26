@@ -9,7 +9,7 @@ type CounterTestLayoutProps = {
 };
 
 /** Recoil 정상작동 테스트 */
-export const CounterTestLayout = ({
+const CounterTestLayout = ({
   count,
   addCount,
   linkTo,
@@ -28,3 +28,5 @@ export const CounterTestLayout = ({
     </div>
   );
 };
+
+export default CounterTestLayout;

@@ -1,14 +1,9 @@
+import { LoginInputProps } from '@/entities/login/type/InputType';
 import { InputTextInForm } from '@/shared/ui';
 import { forwardRef } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
-type EmailInputProps = {
-  isError: boolean;
-  isDirty: boolean;
-} & UseFormRegisterReturn;
-
-const EmailInput = forwardRef<HTMLInputElement, EmailInputProps>(
-  ({ isError, isDirty, ...rest }: EmailInputProps, ref) => {
+const EmailInput = forwardRef<HTMLInputElement, LoginInputProps>(
+  ({ isError, isDirty, ...rest }: LoginInputProps, ref) => {
     return (
       <InputTextInForm
         id="email"

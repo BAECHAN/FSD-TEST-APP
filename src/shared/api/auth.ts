@@ -3,7 +3,7 @@ import {
   deleteRefreshToken,
   getLocalRefreshToken,
   saveRefreshToken,
-} from '@/shared/lib/index';
+} from '@/shared/lib';
 import { API_URL } from '@/shared/util';
 
 export const login = async (email: string, password: string) => {
@@ -34,8 +34,4 @@ export const getAccessToken = async () => {
     return axiosInstance.post(`${API_URL}/token`, { token: refreshToken });
   }
   throw new Error('No refresh token available');
-};
-
-export const getBoardData = async () => {
-  return axiosInstance.get(`${API_URL}/board`);
 };

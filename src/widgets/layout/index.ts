@@ -1,2 +1,2 @@
-export { CounterTestLayout } from './ui/CounterTestLayout';
-export { LoginFormLayout } from './ui/LoginFormLayout';
+export { default as CounterTestLayout } from './ui/CounterTestLayout';
+export { default as LoginFormLayout } from './ui/LoginFormLayout';

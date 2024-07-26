@@ -1,14 +1,9 @@
+import { LoginInputProps } from '@/entities/login/type/InputType';
 import { InputTextInForm } from '@/shared/ui';
 import { forwardRef } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 
-type PasswordInputProps = {
-  isError: boolean;
-  isDirty: boolean;
-} & UseFormRegisterReturn;
-
-const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  ({ isError, isDirty, ...rest }: PasswordInputProps, ref) => {
+const PasswordInput = forwardRef<HTMLInputElement, LoginInputProps>(
+  ({ isError, isDirty, ...rest }: LoginInputProps, ref) => {
     return (
       <InputTextInForm
         id="password"
