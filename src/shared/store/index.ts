@@ -1,1 +1,6 @@
-export { counerStateSelector, counterAtom } from './atom';
+export {
+  counterAtom,
+  counterSelector,
+  modalOpenAtom,
+  modalOpenSelector,
+} from './atom';

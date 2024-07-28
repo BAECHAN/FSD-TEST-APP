@@ -1,18 +1,18 @@
-import { User } from '@/entities/user';
-import { getUserList } from '@/shared/api';
+import { UserInfo } from '@/entities/user';
+import { queryKeys } from '@/shared/query';
+import { getUserList } from '@/widgets/userCardList';
 import { useQuery } from '@tanstack/react-query';
 
-const queryKey: string = 'userList';
-
-const fetchUsers = async (): Promise<User[]> => {
+const fetchUsers = async (): Promise<UserInfo[]> => {
   const { data } = await getUserList();
   return data;
 };
 
 const useUserListQuery = () => {
   return useQuery({
-    queryKey: [queryKey],
+    queryKey: [queryKeys.userList],
     queryFn: () => fetchUsers(),
+    staleTime: 5 * 1000,
   });
 };
 

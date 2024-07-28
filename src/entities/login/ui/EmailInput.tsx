@@ -1,9 +1,9 @@
-import { LoginInputProps } from '@/entities/login/type/InputType';
+import { FormInputProps } from '@/entities/login';
 import { InputTextInForm } from '@/shared/ui';
 import { forwardRef } from 'react';
 
-const EmailInput = forwardRef<HTMLInputElement, LoginInputProps>(
-  ({ isError, isDirty, ...rest }: LoginInputProps, ref) => {
+const EmailInput = forwardRef<HTMLInputElement, FormInputProps>(
+  ({ isError, isDirty, ...rest }: FormInputProps, ref) => {
     return (
       <InputTextInForm
         id="email"

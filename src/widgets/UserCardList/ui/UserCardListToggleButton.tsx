@@ -1,11 +1,27 @@
-export const UserCardListToggleButton = ({
+import { Button } from '@/shared/lib/shadcn-ui/components/ui';
+import useUserListQuery from '@/widgets/userCardList/query/useUserListQuery';
+
+const UserCardListToggleButton = ({
   isActive,
   onClick,
 }: {
   isActive: boolean;
   onClick: () => void;
 }) => {
+  const { isLoading, error } = useUserListQuery();
+
   return (
-    <button onClick={onClick}>데이터{isActive ? '가져옴' : '안가져옴'}</button>
+    <Button onClick={onClick}>
+      데이터
+      {isActive
+        ? isLoading
+          ? '가져오는중'
+          : error
+            ? '못가져옴'
+            : '가져옴'
+        : '가져오기'}
+    </Button>
   );
 };
+
+export default UserCardListToggleButton;

@@ -515,3 +515,67 @@ refreshToken - indexedDB에 저장하여, accessToken이 없으면 refreshToken�
    2-3. accessToken을 가져오면 다시 retry 하여 API 요청
 
 3. 로그아웃하면 accessToken, refreshToken 모두 소멸
+
+### react-modal
+
+https://www.npmjs.com/package/react-modal
+
+#### 시작
+
+1. 패키지 설치
+
+```bash
+npm i react-modal
+npm i @types/react-modal
+```
+
+2. tsconfig.json 에서 allowSyntheticDefaultImports 플래그 설정
+
+```bash
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    // 다른 설정들...
+  }
+}
+```
+
+3. ModalComponent.tsx - 모달컴포넌트 생성
+
+```tsx
+import * as ReactModal from 'react-modal';
+
+ReactModal.setAppElement('#root'); // 모달이 열린 상태에서도 접근성을 보장하기 위해 필요합니다.
+```
+
+#### tip
+
+- 만일 여기서 모달창 밖 부분을 클릭해서 꺼지는 걸 멈추고 싶을땐 shouldCloseOnOverlayClick={false} 속성값을 또 추가한다면 오버레이부분의 클릭으로 인한 꺼짐을 막을 수 있다.
+
+### useMutation 적용
+
+```tsx
+const useUpdateUserMutation = () => {
+  return useMutation({
+    mutationFn: (userForm: UserInfo) => {
+      return updateUser(userForm);
+    },
+    onSuccess: () => {
+      // Do something on success
+      queryClient.invalidateQueries({ queryKey: [queryKeys.userList] }); // queryKey로 userList 초기화
+    },
+  });
+};
+
+const { mutate: updateUserMutate } = useUpdateUserMutation(); // alias 처리
+
+updateUserMutate({ ...data, id: userInfo.id }); // useForm에 id가 없어서 key를 추가
+```
+
+### api 이름은 create / update / get / delete로
+
+### 해야할 것
+
+1. query와 api 위치 나 코드를 결합할지 고민
+2. useQuery 더 학습 및 캡슐화
+3. 폴더 위치 및 type, model 등 어떻게 할 것 인지 고민
