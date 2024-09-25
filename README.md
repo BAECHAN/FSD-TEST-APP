@@ -48,6 +48,13 @@ npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin es
 npm install prettier eslint-config-prettier eslint-plugin-prettier --save-dev
 ```
 
+- settings.json 수정
+```
+# .vscode/settings.json
+  "prettier.prettierPath": "./node_modules/prettier",
+```
+
+
 ### React Router 설치
 
 ```
